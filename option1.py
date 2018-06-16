@@ -4,20 +4,16 @@ import webbrowser
 import socket
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-
 x='''
 Press 1 :  To check current time and date
 Press 2 :  To create a  file 
 Press 3 :  To create  a directory  
-Press 4 :  To logout systemps | ctrlc
+Press 4 :  To logout of system 
 Press 5 :  To search somehting on google 
 Press 6 :  To reboot your OS  
-Press 7 :  To check Internet connectiON your PC/LAPTOP
-press 8 :  To check all connected  IP in your network
-Press 9 :  TO LOGIN  whatsApp on browser  ...'''
+Press 7 :  To check Internet connection of your PC/LAPTOP
+press 8 :  To check all connected  IP in your network 
+Press 9 :  TO LOGIN into whatsapp on browser  ...'''
 
 print(x)
 choice =int(input("Enter any number from 1 to 9:"))
@@ -42,6 +38,7 @@ elif choice==5:
 elif choice==6:
     print("Rebooting in 20 sec.... please save all the important documents and exit.")
     time.sleep(20);
+    os.system('reboot')
 elif choice==7:
     print('Have patience..we are checking your internet connection...')
     hostname = "www.google.com"
@@ -49,36 +46,33 @@ elif choice==7:
 
     #check the response...
     if response == 0:
-        print('Congrats!! Your have active internet connection...')
+        print('\n\nCongrats!! Your have active internet connection...')
     else:
-        print('Sorry!! Please check your internet connection and try again....')
+        print('\n\nSorry!! Please check your internet connection and try again....')
 
 elif choice==8:
     print("Getting list of all the connected IP's....please wait...")
     print ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1])
 
 elif choice==9:
-    def message(Rejoice,message='hi its me'):
-     """this a simple function to send a whatsapp message to your friends
-    and group using python and selenium an automated tool to parse the HTML
-    content and to change the properties.
-    paramters:
-    to - enter a name from your contacts it can be friend's name or a group's title
-    message - message to be deliever"""
-    d = webdriver.Chrome(r'/usr/bin/chromedriver')		# directory to chromedriver
-    d.get('https://web.whatsapp.com/')					# URL to open whatsapp web
-    wait = WebDriverWait(driver = d, timeout = 900)			# inscrease or decrease the timeout according to your net connection
-                                                                # additional text to with your message to identify that it is send via software
+    driver = webdriver.Chrome(r'/usr/bin/chromedriver')
+    driver.get('https://web.whatsapp.com/')
 
-    name_argument = f'//span[contains(@title,\'{Rejoice}\')]'		# HTML parse code to identify your reciever
-    title = wait.until(EC.presence_of_element_located((By.XPATH,name_argument)))
-    title.click()							# to open the receiver messages page in the browser
+    name = input('Enter the name of user or group : ')
+    msg = input('Enter your message : ')
+    count = int(input('Enter the count : '))
+    wait = WebDriverWait(driver = driver, timeout = 900)
+    #input('Click anything after scanning QR code')
 
-    # many a times class name or other HTML properties changes so keep a track of current class name for input box by using inspect elements
-    input_path = '//div[@class="pluggable-input-body copyable-text selectable-text"][@dir="auto"][@data-tab="1"]'
-    box = wait.until(EC.presence_of_element_located((By.XPATH,input_path)))
+    user = driver.find_element_by_xpath('//span[@title = "{}"]'.format(name))
+    user.click()
 
-    box.send_keys(message + Keys.ENTER)					# send your message followed by an Enter
+    msg_box = driver.find_element_by_class_name('_2S1VP')
+
+    for i in range(count):
+       msg_box.send_keys(msg)
+       button = driver.find_element_by_class_name('_2lkdt')
+       button.click()
 
 
 else:
