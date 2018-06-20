@@ -5,7 +5,7 @@ with sr.Microphone() as source:
     print("Say something!")
     audio = r.listen(source)
 try:
-    print("You said" + r.recognize_sphinx(audio))
+    print("You said" + r.recognize_sphinx(audio))   #you need to install pocketsphinx to make this work.....
 except sr.UnknownValueError:
     print("Could not understand audio")
 except sr.RequestError as e:
