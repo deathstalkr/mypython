@@ -1,12 +1,12 @@
 from sklearn.tree import DecisionTreeClassifier
-#import numpy as ny
-#import matplotlib.pyplot as py------for plotting graph
+import matplotlib.pyplot as py
 from sklearn.metrics import accuracy_score
 import pandas as pd
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 
-data= pd.read_csv("/home/inferni/Downloads/train.csv").values
+data= pd.read_csv("/home/inferni/Downloads/train.csv").values   #you can download the dataset "train.csv" from 
+                                                              # https://www.kaggle.com/c/digit-recognizer/data 
 #print(data)
 #x=dir(data)
 #print(x)
@@ -55,3 +55,11 @@ print(predictedknn)
 #accuracy test for KNN
 acc2=accuracy_score(predictedknn,test_target)
 print(acc2)
+
+#plotting graph
+py.xlabel('Algorithms')
+py.ylabel('Percentage')
+algo=['DsT','KNN','SVC']
+accuracy_percent=[acc,acc2,acc1]
+py.scatter(algo,accuracy_percent,color='r',s=100,marker='x')   #you can also plt using bar
+py.show()
