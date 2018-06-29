@@ -1,5 +1,6 @@
 import cv2
 import random
+import os
 
 cam=cv2.VideoCapture(0)
 while cam.isOpened():
@@ -18,8 +19,9 @@ while cam.isOpened():
         # SPACE pressed
         x=random.random()
         y=str(x)[3:6]
-        cv2.imwrite('adhoc'+y+'.jpg',frame)
+        cv2.imwrite('capture'+y+'.jpg',frame)
         print('capture')
+        os.system('sshpass -p (password)  scp /home/inferni/Desktop/mypython/capture'+y+'.jpg user@IP:/var/www/html/images')
 cv2.destroyAllWindows()
 cam.release()
 
