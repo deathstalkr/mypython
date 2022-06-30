@@ -2,7 +2,6 @@ import pandas as pa
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
 
 data=pa.read_excel("cancer patient data sets.xlsx").values
 #print(data)
