@@ -4,7 +4,6 @@ import webbrowser
 import socket
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-
 x='''
 Press 1 :  To check current time and date
 Press 2 :  To create a  file 

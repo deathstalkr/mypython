@@ -59,5 +59,3 @@ algo=['DsT','KNN','SVC']
 accuracy_percent=[acc1,acc,acc2]
 py.scatter(algo,accuracy_percent,color='r',s=100,marker='x')
 py.show()
-
-
