@@ -7,7 +7,12 @@ from sklearn.metrics import accuracy_score
 from sklearn.svm import SVC
 
 cancer=load_breast_cancer()
+
 print(dir(cancer))
+print(cancer)
+print(cancer.target_names)
+print(cancer.feature_names)
+
 #splitting data
 x_train,x_test,y_train,y_test=train_test_split(cancer.data,cancer.target,test_size=0.01)
 

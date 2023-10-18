@@ -1,0 +1,4 @@
+{"name" : ['jack', 'Riti', 'Aadi'],
+"phno." : ['1234567890', '4628973416', '4729398916'],
+"email" : ['jack@foo.com', 'riti@example.com', 'aadi@maildrop.cc'],
+"city" : ['Bangalore', 'Delhi', 'Pune']}

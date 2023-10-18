@@ -1,22 +1,26 @@
 import speech_recognition as sr
-import pyaudio   #optional
+#from gtts import gTTS
+#import os
+# import pyaudio
 
 # get audio from the microphone
-while True:                     #this loop runs the below code infinite times until any inturrupt is generated 
+output=0
+while True:
     r = sr.Recognizer()
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)
-        print("Speak:")
+        print("Say something:")
         audio = r.listen(source)
 
     try:
-        output= r.recognize_google(audio,language='en')  #can change language to your desired language 
-        print("You said: " +output)
+        output=r.recognize_google(audio,language='en')
+        print(output)
     except sr.UnknownValueError:
         print("Could not understand audio")
     except sr.RequestError as e:
         print("Could not request results.Please check your internet connection and try again; {0}".format(e))
-    if output=='exit':     #if the input voice is matched with the passed argument the loop terminates 
+
+    if output=='close':
         break
-    else:                  #loop continues to run
+    else:
         continue
